@@ -1,10 +1,22 @@
-import { useState } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { useParams } from 'react-router-dom'
 
 const UpdateJob = () => {
+  const {id} = useParams()
   const [startDate, setStartDate] = useState(new Date())
-
+  const [job, setJob] = useState({})
+  const fetchJobData = async () => {
+    const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/job/${id}`)
+    setJob(data)
+  }
+  useEffect(()=> {
+    fetchJobData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[id])
+   console.log(job)
   return (
     <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
       <section className=' p-2 md:p-6 mx-auto bg-white rounded-md shadow-md '>

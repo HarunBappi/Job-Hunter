@@ -1,9 +1,9 @@
+import { useContext } from 'react'
+import toast from 'react-hot-toast'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import bgImg from '../../assets/images/login.jpg'
 import logo from '../../assets/images/logo.png'
-import { useContext } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
-import toast from 'react-hot-toast'
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -38,7 +38,7 @@ const Login = () => {
       navigate(from, { replace: true })
     } catch (err) {
       console.log(err)
-      toast.error(err?.message)
+      toast.error('user not available!')
     }
   }
 
